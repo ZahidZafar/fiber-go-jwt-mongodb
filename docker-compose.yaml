@@ -1,0 +1,26 @@
+version: '3'
+services:
+  go-app:
+    image: go-app:0.1
+    container_name: go-app
+    ports: 
+     - 3000:3000
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+     - 27017:27017
+    
+    volumes:
+     - mongo-data:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+
+volumes:
+    mongo-data:
+      driver: local
+
+
+# docker-compose -f docker-compose.yaml down
+# docker-compose -f docker-compose.yaml up
